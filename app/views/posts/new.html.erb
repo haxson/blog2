@@ -1,15 +1,17 @@
-<h1>New post</h1>
+<h1>New Post</h1>
 
-<p><%= form_for :post, url: posts_path do |f| %>
-	<%= f.label :Title %> <br>
-	<%= f.text_field :Title %>
-</p><br>
+<%= form_for :post, url: posts_path do |f| %>
+	<% if @post.errors.any? %>
+		<div id = "errors">
+			<h2><%= pluralize(@post.errors.count, "error") %>Prevented this post from saving</h2>
+		</div>
 
-	<p>
-	<% f.label :body %><br>
-	<%= f.text_area :body %>
-</p><br>
-<p>
+	<%end%>
+	<%= f.label :Title %><br>
+	<%= f.text_field :Title %><br>
+	<br>
+	<%= f.label :body %><br>
+	<%= f.text_field :body %><br>
+	<br>
 	<%= f.submit %>
-</p>
-	<% end %>
+<% end %>
